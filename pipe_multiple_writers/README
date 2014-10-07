@@ -1,0 +1,43 @@
+This script will start multiple child writers.  Each child will take one input argument and put the string on the pipe.   The parent will read the data from the pipe and display.   
+
+examples:
+
+(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` 2>/dev/null) | egrep --color "2"
+
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "2"
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>fg
+-bash: fg: current: no such job
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>vi run.c
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "2"
+333333333322222222223333333333111111111133333333332222222222111111111133333333332222222222111111111133333333332222222222111111111122222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222221111111111333333333322222222223333333333111111111133333333332222222222111111111133333333332222222222111111111122222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333333333333332222222222111111111133333333332222222222111111111133333333332222222222111111111133333333332222222222111111111122222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222223333333333333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111222222222211111111111111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222223333333333222222222211111111113333333333222222222233333333331111111111333333333322222222221111111111222222222211111111111111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}` 2>/dev/null) | egrep --color "3"
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
+(LOCAL) tposlinski@localhost: ~/ipc/pipe_multiple_writers/>(run `printf '1%.0s' {1..10}` `printf '2%.0s' {1..10}` `printf '3%.0s' {1..10}`) | egrep --color "3"
+Parent (4840) START
+Child (4847) STARTED => 2
+Child (4846) STARTED => 1
+Child (4845) STARTED => 0
+Child (4847) ENDED
+Child (4846) ENDED
+Child (4845) ENDED
+Parent (4840) END
+Parent (4840) CHILDREN PID
+CHILD PID => 4845
+CHILD PID => 4846
+CHILD PID => 4847
+333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111333333333322222222221111111111
